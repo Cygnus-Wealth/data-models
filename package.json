@@ -1,0 +1,35 @@
+{
+  "name": "@cygnus-wealth/data-models",
+  "version": "0.0.1",
+  "description": "Shared TypeScript data models for CygnusWealth project",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint . --ext .ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.32.0",
+    "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vitest": "^3.2.4"
+  }
+}

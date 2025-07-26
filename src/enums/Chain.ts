@@ -1,0 +1,12 @@
+export enum Chain {
+  ETHEREUM = 'ETHEREUM',
+  POLYGON = 'POLYGON',
+  ARBITRUM = 'ARBITRUM',
+  OPTIMISM = 'OPTIMISM',
+  AVALANCHE = 'AVALANCHE',
+  BSC = 'BSC',
+  SOLANA = 'SOLANA',
+  SUI = 'SUI',
+  BITCOIN = 'BITCOIN',
+  OTHER = 'OTHER'
+}

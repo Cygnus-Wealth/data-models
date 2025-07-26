@@ -1,0 +1,12 @@
+export enum AccountType {
+  SPOT = 'SPOT',
+  MARGIN = 'MARGIN',
+  FUTURES = 'FUTURES',
+  SAVINGS = 'SAVINGS',
+  STAKING = 'STAKING',
+  WALLET = 'WALLET',
+  DEFI = 'DEFI',
+  BROKERAGE = 'BROKERAGE',
+  RETIREMENT = 'RETIREMENT',
+  OTHER = 'OTHER'
+}
