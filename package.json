@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "private": "false",
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
