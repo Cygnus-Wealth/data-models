@@ -23,7 +23,8 @@ import {
   AssetIdentifier,
   TimeRange,
   FilterOptions,
-  PortfolioItem
+  PortfolioItem,
+  PortfolioAsset
 } from './index';
 
 describe('CygnusWealth Data Models', () => {
@@ -41,6 +42,7 @@ describe('CygnusWealth Data Models', () => {
       expect(Chain.SOLANA).toBe('SOLANA');
       expect(Chain.SUI).toBe('SUI');
       expect(Chain.POLYGON).toBe('POLYGON');
+      expect(Chain.BASE).toBe('BASE');
     });
 
     it('should have all integration sources', () => {
@@ -50,6 +52,7 @@ describe('CygnusWealth Data Models', () => {
       expect(IntegrationSource.METAMASK).toBe('METAMASK');
       expect(IntegrationSource.PHANTOM).toBe('PHANTOM');
       expect(IntegrationSource.SLUSH).toBe('SLUSH');
+      expect(IntegrationSource.SUIET).toBe('SUIET');
     });
 
     it('should have all transaction types', () => {
@@ -115,6 +118,18 @@ describe('CygnusWealth Data Models', () => {
       expect(price.value).toBe(2500.50);
       expect(price.currency).toBe('USD');
       expect(price.source).toBe(IntegrationSource.COINBASE);
+    });
+
+    it('should create a valid Price with amount field', () => {
+      const price: Price = {
+        amount: 1500.75,
+        currency: 'EUR',
+        timestamp: new Date('2024-01-26T12:00:00Z')
+      };
+
+      expect(price.amount).toBe(1500.75);
+      expect(price.currency).toBe('EUR');
+      expect(price.source).toBeUndefined();
     });
 
     it('should create valid MarketData', () => {
@@ -265,6 +280,68 @@ describe('CygnusWealth Data Models', () => {
 
       expect(portfolio.performance?.year).toBe(50.0);
       expect(portfolio.totalValue.value).toBe(100000);
+    });
+
+    it('should create a valid Portfolio with items and metadata', () => {
+      const portfolio: Portfolio = {
+        id: 'portfolio-2',
+        name: 'Wallet-only Portfolio',
+        items: [],
+        totalValue: {
+          value: 50000,
+          currency: 'USD',
+          timestamp: new Date()
+        },
+        lastUpdated: new Date(),
+        metadata: {
+          tags: ['defi', 'long-term']
+        }
+      };
+
+      expect(portfolio.userId).toBeUndefined();
+      expect(portfolio.items).toBeDefined();
+      expect(portfolio.metadata?.tags).toContain('defi');
+    });
+
+    it('should create a valid PortfolioAsset', () => {
+      const portfolioAsset: PortfolioAsset = {
+        id: 'pa-1',
+        accountId: 'account-1',
+        assetId: 'eth-1',
+        asset: {
+          id: 'eth-1',
+          symbol: 'ETH',
+          name: 'Ethereum',
+          type: AssetType.CRYPTOCURRENCY,
+          chain: Chain.ETHEREUM
+        },
+        balance: {
+          assetId: 'eth-1',
+          asset: {
+            id: 'eth-1',
+            symbol: 'ETH',
+            name: 'Ethereum',
+            type: AssetType.CRYPTOCURRENCY,
+            chain: Chain.ETHEREUM
+          },
+          amount: '5.5',
+          value: {
+            value: 13750,
+            currency: 'USD',
+            timestamp: new Date()
+          }
+        },
+        value: {
+          value: 13750,
+          currency: 'USD',
+          timestamp: new Date()
+        },
+        allocation: 27.5,
+        lastUpdated: new Date()
+      };
+
+      expect(portfolioAsset.allocation).toBe(27.5);
+      expect(portfolioAsset.balance.amount).toBe('5.5');
     });
   });
 

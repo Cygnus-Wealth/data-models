@@ -1,11 +1,14 @@
 import { Account } from './Account';
 import { Price } from './Price';
+import { PortfolioAsset } from './PortfolioAsset';
+import { Metadata } from './Metadata';
 
 export interface Portfolio {
   id: string;
-  userId: string;
+  userId?: string;
   name: string;
-  accounts: Account[];
+  accounts?: Account[];
+  items?: PortfolioAsset[];
   totalValue: Price;
   totalValueHistory?: Array<{
     timestamp: Date;
@@ -19,4 +22,5 @@ export interface Portfolio {
     all_time: number;
   };
   lastUpdated: Date;
+  metadata?: Metadata;
 }

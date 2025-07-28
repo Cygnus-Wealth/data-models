@@ -26,6 +26,7 @@ export { LendingPosition } from './interfaces/LendingPosition';
 // Account and Portfolio Models
 export { Account } from './interfaces/Account';
 export { Portfolio } from './interfaces/Portfolio';
+export { PortfolioAsset } from './interfaces/PortfolioAsset';
 
 // Transaction Models
 export { Transaction } from './interfaces/Transaction';

@@ -5,6 +5,7 @@ export enum Chain {
   OPTIMISM = 'OPTIMISM',
   AVALANCHE = 'AVALANCHE',
   BSC = 'BSC',
+  BASE = 'BASE',
   SOLANA = 'SOLANA',
   SUI = 'SUI',
   BITCOIN = 'BITCOIN',

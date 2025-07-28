@@ -17,6 +17,7 @@ export enum IntegrationSource {
   RABBY = 'RABBY',
   PHANTOM = 'PHANTOM',
   SLUSH = 'SLUSH',
+  SUIET = 'SUIET',
   
   // Other
   MANUAL_ENTRY = 'MANUAL_ENTRY',

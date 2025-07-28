@@ -1,8 +1,9 @@
 import { IntegrationSource } from '../enums/IntegrationSource';
 
 export interface Price {
-  value: number;
+  value?: number;
+  amount?: number;
   currency: string;
   timestamp: Date;
-  source: IntegrationSource;
+  source?: IntegrationSource;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@cygnus-wealth/data-models",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Shared TypeScript data models for CygnusWealth project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
