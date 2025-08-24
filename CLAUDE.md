@@ -57,3 +57,112 @@ When adding new financial data types:
 4. Prefer optional fields over provider-specific interfaces
 5. Export all types from `src/index.ts` and add corresponding tests
 6. Consider data normalization needs when structuring types
+
+## DDD Architecture Agent Selection Guide
+
+When working on CygnusWealth's Domain-Driven Design architecture, use these specialized agents based on the task scope and keywords:
+
+### Agent Selection Decision Tree
+
+1. **Keywords indicating STRATEGIC/ENTERPRISE scope** → `ddd-enterprise-architect`
+   - "bounded contexts", "domain decomposition", "microservices", "monolith refactoring"
+   - "business strategy", "enterprise standards", "cross-domain communication"
+   - "event storming", "ubiquitous language", "context mapping"
+
+2. **Keywords indicating DOMAIN-LEVEL scope** → `ddd-domain-architect`
+   - "domain implementation", "aggregate design", "repository pattern"
+   - "API contracts", "inter-system communication", "domain events"
+   - "translate enterprise to domain", "modular architecture within domain"
+
+3. **Keywords indicating SYSTEM/REPO scope** → `ddd-system-architect`
+   - "module structure", "library selection", "E2E testing", "deployment strategy"
+   - "state management", "build configuration", "performance optimization"
+   - "single repository", "application architecture", "tech stack decisions"
+
+4. **Keywords indicating CODE-LEVEL design** → `ddd-unit-architect`
+   - "file structure", "class design", "interface definition", "method signatures"
+   - "unit test design", "code organization", "naming conventions"
+   - "design patterns", "clean code principles", "TDD specifications"
+
+5. **Keywords indicating IMPLEMENTATION** → `ddd-software-engineer`
+   - "implement", "write code", "create tests", "fix bugs"
+   - "refactor existing code", "add functionality", "complete implementation"
+   - "based on design", "following specifications", "code review"
+
+### ddd-enterprise-architect
+**Trigger When**: Task involves strategic, cross-domain, or business-aligned architectural decisions
+- Defining bounded contexts for portfolio aggregation domains (CEX, DEX, wallets)
+- Establishing communication patterns between domains (e.g., how wallet data flows to portfolio aggregation)
+- Decomposing the monolithic React app into domain modules
+- Setting enterprise-wide standards for decentralization and client-side sovereignty
+- Aligning technical architecture with business strategy
+- Conducting event storming sessions
+- Creating context maps between multiple domains
+
+### ddd-domain-architect
+**Trigger When**: Task involves translating enterprise guidance to specific domain implementations
+- Translating enterprise directives into portfolio tracking domain models
+- Designing aggregates for multi-chain wallet data
+- Defining contracts between CEX integration and core aggregation modules
+- Implementing modular repository structures for each blockchain ecosystem
+- Negotiating boundaries between systems within a domain
+- Establishing domain-specific API contracts
+- Adapting enterprise standards to domain requirements
+
+### ddd-system-architect
+**Trigger When**: Task involves internal architecture of a single system or repository
+- Designing module structure for portfolio tracking features
+- Selecting state management libraries (e.g., Zustand vs alternatives)
+- Planning E2E test scenarios for wallet connections
+- Ensuring alignment with browser-first, decentralized principles
+- Evaluating technical libraries and frameworks
+- Defining deployment and build strategies
+- Optimizing system performance and scalability
+
+### ddd-unit-architect
+**Trigger When**: Task involves detailed code-level design before implementation
+- Designing TypeScript interfaces for financial data models
+- Creating file structures for encryption utilities
+- Defining unit test specifications for data normalization
+- Implementing clean code patterns for client-side operations
+- Specifying class hierarchies and method signatures
+- Planning code organization and module boundaries
+- Establishing coding standards and patterns
+
+### ddd-software-engineer
+**Trigger When**: Task involves actual code implementation or modification
+- Writing TypeScript code based on unit architect specifications
+- Implementing domain entities and value objects
+- Creating comprehensive unit tests with Vitest
+- Ensuring adherence to DDD patterns in actual code
+- Refactoring existing implementations
+- Fixing bugs and addressing code issues
+- Completing feature implementations
+
+### Sequential Agent Usage Patterns
+
+1. **New Feature Development**:
+   - Start: `ddd-enterprise-architect` (if crossing domains) OR `ddd-domain-architect` (if within domain)
+   - Then: `ddd-unit-architect` (design the code structure)
+   - Finally: `ddd-software-engineer` (implement the design)
+
+2. **Library/Framework Selection**:
+   - Use: `ddd-system-architect` (evaluate and decide)
+
+3. **Refactoring Monolith**:
+   - Start: `ddd-enterprise-architect` (define bounded contexts)
+   - Then: `ddd-domain-architect` (implement domain separation)
+   - Finally: `ddd-system-architect` (configure repositories)
+
+4. **Bug Fix or Enhancement**:
+   - Use: `ddd-software-engineer` (directly implement fix)
+
+### Practical Selection Examples
+- "How should we structure our portfolio aggregation?" → `ddd-enterprise-architect` (strategic decomposition)
+- "Design the wallet connection module" → `ddd-unit-architect` (code-level design)
+- "Implement the wallet connection module" → `ddd-software-engineer` (actual implementation)
+- "Which state management library for this repo?" → `ddd-system-architect` (system-level decision)
+- "Create API contract between CEX and aggregator" → `ddd-domain-architect` (inter-system contract)
+- "Define bounded contexts for multi-chain support" → `ddd-enterprise-architect` (strategic boundaries)
+- "Write tests for the Currency value object" → `ddd-software-engineer` (implementation task)
+- "How should domains communicate?" → `ddd-enterprise-architect` (cross-domain strategy)
