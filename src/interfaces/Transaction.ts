@@ -17,13 +17,13 @@ export interface Transaction {
   blockNumber?: number;
   
   // Asset movements
-  assets_in?: Array<{
+  assetsIn?: Array<{
     asset: Asset;
     amount: string;
     value?: Price;
   }>;
-  
-  assets_out?: Array<{
+
+  assetsOut?: Array<{
     asset: Asset;
     amount: string;
     value?: Price;

@@ -13,7 +13,7 @@ export interface LiquidityPosition {
   lpTokenBalance?: string;
   share?: number; // Percentage of pool
   value?: Price;
-  fees_earned?: number;
-  impermanent_loss?: number;
+  feesEarned?: number;
+  impermanentLoss?: number;
   metadata?: Metadata;
 }

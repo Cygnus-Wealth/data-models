@@ -4,6 +4,7 @@ export { Chain } from './enums/Chain';
 export { IntegrationSource } from './enums/IntegrationSource';
 export { TransactionType } from './enums/TransactionType';
 export { AccountType } from './enums/AccountType';
+export { LendingPositionType } from './enums/LendingPositionType';
 
 // Base Interfaces
 export { BaseEntity } from './interfaces/BaseEntity';
