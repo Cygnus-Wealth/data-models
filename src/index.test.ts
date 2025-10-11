@@ -5,6 +5,7 @@ import {
   IntegrationSource,
   TransactionType,
   AccountType,
+  LendingPositionType,
   Asset,
   NFT,
   Price,
@@ -189,7 +190,7 @@ describe('CygnusWealth Data Models', () => {
         tokens: [],
         lpTokenBalance: '1000',
         share: 0.001,
-        fees_earned: 150.50
+        feesEarned: 150.50
       };
 
       expect(lpPosition.protocol).toBe('Uniswap V3');
@@ -222,7 +223,7 @@ describe('CygnusWealth Data Models', () => {
         id: 'aave-supply-usdc',
         protocol: 'Aave V3',
         chain: Chain.ETHEREUM,
-        type: 'SUPPLY',
+        type: LendingPositionType.SUPPLY,
         asset: {
           id: 'usdc-1',
           symbol: 'USDC',
@@ -232,10 +233,10 @@ describe('CygnusWealth Data Models', () => {
         },
         amount: '10000',
         apy: 3.2,
-        health_factor: 1.8
+        healthFactor: 1.8
       };
 
-      expect(lendingPosition.type).toBe('SUPPLY');
+      expect(lendingPosition.type).toBe(LendingPositionType.SUPPLY);
       expect(lendingPosition.apy).toBe(3.2);
     });
   });
@@ -355,7 +356,7 @@ describe('CygnusWealth Data Models', () => {
         hash: '0x1234567890abcdef',
         chain: Chain.ETHEREUM,
         timestamp: new Date(),
-        assets_in: [{
+        assetsIn: [{
           asset: {
             id: 'usdc-1',
             symbol: 'USDC',
@@ -365,7 +366,7 @@ describe('CygnusWealth Data Models', () => {
           },
           amount: '1000'
         }],
-        assets_out: [{
+        assetsOut: [{
           asset: {
             id: 'eth-1',
             symbol: 'ETH',
@@ -379,8 +380,8 @@ describe('CygnusWealth Data Models', () => {
 
       expect(transaction.type).toBe(TransactionType.SWAP);
       expect(transaction.status).toBe('COMPLETED');
-      expect(transaction.assets_in).toHaveLength(1);
-      expect(transaction.assets_out).toHaveLength(1);
+      expect(transaction.assetsIn).toHaveLength(1);
+      expect(transaction.assetsOut).toHaveLength(1);
     });
   });
 
