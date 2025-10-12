@@ -1,6 +1,6 @@
 {
   "name": "@cygnus-wealth/data-models",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Shared TypeScript data models for CygnusWealth project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,23 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "types",
+    "data-models",
+    "financial-data",
+    "cryptocurrency",
+    "crypto",
+    "blockchain",
+    "defi",
+    "portfolio",
+    "multi-chain",
+    "ethereum",
+    "solana",
+    "trading",
+    "cex",
+    "dex"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",

@@ -65,6 +65,6 @@ export interface PaginatedResponse<T> {
   /** Number of items per page */
   pageSize: number;
 
-  /** Whether more pages exist after the current page (page * pageSize < total) */
+  /** Whether more pages exist after the current page (page * pageSize \< total) */
   hasMore: boolean;
 }

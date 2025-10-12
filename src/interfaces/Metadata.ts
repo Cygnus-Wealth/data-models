@@ -77,11 +77,13 @@ export interface Metadata {
    * Avoid storing functions, circular references, or non-serializable types.
    *
    * @example
+   * ```typescript
    * {
    *   "robinhood:accountId": "RH_ACC_123",
    *   "robinhood:isFractional": true,
    *   "custom:tags": ["watchlist", "high-priority"]
    * }
+   * ```
    */
   [key: string]: unknown;
 }

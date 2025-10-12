@@ -101,7 +101,7 @@ export interface LendingPosition {
   /** Interest accrued (positive for supply, negative for borrow) */
   accruedInterest?: number;
 
-  /** Health factor for borrow positions (ratio of collateral to debt, >1.0 = safe) */
+  /** Health factor for borrow positions (ratio of collateral to debt, \>1.0 = safe) */
   healthFactor?: number;
 
   /** Liquidation threshold as ratio (0.0-1.0, e.g., 0.85 = 85% LTV before liquidation) */
