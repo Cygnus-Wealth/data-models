@@ -47,5 +47,8 @@ export { TimeRange } from './types/TimeRange';
 export { SortOrder } from './types/SortOrder';
 export { FilterOptions } from './interfaces/FilterOptions';
 
+// Network Environment
+export { NetworkEnvironment, EnvironmentConfig } from './types/NetworkEnvironment';
+
 // Backward Compatibility
 export { PortfolioItem } from './interfaces/PortfolioItem';
