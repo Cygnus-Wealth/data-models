@@ -127,6 +127,14 @@ export enum Chain {
 }
 
 // @public
+export interface EnvironmentConfig {
+    chain: Chain;
+    environment: NetworkEnvironment;
+    label?: string;
+    rpcUrl: string;
+}
+
+// @public
 export interface FilterOptions {
     assetTypes?: AssetType[];
     chains?: Chain[];
@@ -225,6 +233,9 @@ export interface MarketData {
 export interface Metadata {
     [key: string]: unknown;
 }
+
+// @public
+export type NetworkEnvironment = 'production' | 'testnet' | 'local';
 
 // @public
 export interface NFT extends Asset {
