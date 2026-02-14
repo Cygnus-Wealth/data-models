@@ -136,7 +136,7 @@ describe('Foundation Types', () => {
         }
       };
 
-      expect((metadata.level1 as any).level2.level3.deepValue).toBe('found');
+      expect((metadata.level1 as Record<string, unknown> & { level2: { level3: { deepValue: string } } }).level2.level3.deepValue).toBe('found');
     });
 
     it('should preserve null and undefined values', () => {
@@ -174,8 +174,8 @@ describe('Foundation Types', () => {
       };
 
       expect(Array.isArray(metadata.items)).toBe(true);
-      expect((metadata.items as any[])).toHaveLength(2);
-      expect((metadata.items as any[])[0].name).toBe('First');
+      expect((metadata.items as Array<Record<string, unknown>>)).toHaveLength(2);
+      expect((metadata.items as Array<Record<string, unknown>>)[0].name).toBe('First');
     });
 
     it('should handle dates serialized as ISO strings', () => {

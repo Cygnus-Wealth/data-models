@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Account, IntegrationCredentials, SyncStatus, IntegrationSource, AccountType } from '../../src/index';
+import { SyncStatus, IntegrationSource, AccountType } from '../../src/index';
 import {
   metamaskWallet,
   coinbaseAccount,

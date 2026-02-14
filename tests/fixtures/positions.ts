@@ -1,6 +1,5 @@
 import { LiquidityPosition, StakedPosition, LendingPosition, LendingPositionType, Chain } from '../../src/index';
 import { ethAsset, usdcAsset, solAsset } from './assets';
-import { ethBalance, usdcBalance } from './balances';
 
 /**
  * Test fixtures for Position types (LiquidityPosition, StakedPosition, LendingPosition).

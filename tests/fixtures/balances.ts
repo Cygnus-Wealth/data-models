@@ -1,6 +1,5 @@
 import { Balance } from '../../src/index';
 import { ethAsset, usdcAsset, btcAsset, solAsset } from './assets';
-import { ethPrice, usdcPrice, btcPrice } from './market';
 
 /**
  * Test fixtures for Balance types.
@@ -88,7 +87,7 @@ export const largeBalance: Balance = {
   asset: usdcAsset,
   amount: '9999999999999999.000000', // Near JavaScript MAX_SAFE_INTEGER
   value: {
-    value: 9999999999999999,
+    value: Number.MAX_SAFE_INTEGER,
     currency: 'USD',
     timestamp: new Date('2025-10-11T12:00:00Z')
   }

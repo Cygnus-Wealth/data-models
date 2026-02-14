@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { LiquidityPosition, StakedPosition, LendingPosition, LendingPositionType, Chain } from '../../src/index';
+import { LendingPositionType, Chain } from '../../src/index';
 import {
   uniswapLPPosition,
   curveLPPosition,

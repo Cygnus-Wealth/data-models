@@ -120,7 +120,7 @@ describe('Response Wrappers', () => {
       };
 
       expect(error.details).toBeDefined();
-      expect((error.details as any).retryAfter).toBe(60);
+      expect((error.details as Record<string, unknown>).retryAfter).toBe(60);
     });
 
     it('should support various error codes', () => {
@@ -149,7 +149,7 @@ describe('Response Wrappers', () => {
         }
       };
 
-      expect((error.details as any).fields).toBeDefined();
+      expect((error.details as Record<string, unknown>).fields).toBeDefined();
     });
   });
 

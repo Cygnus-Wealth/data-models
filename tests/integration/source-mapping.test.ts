@@ -330,7 +330,7 @@ describe('Source Mapping Integration Tests', () => {
         { name: 'Suiet', source: IntegrationSource.SUIET }
       ];
 
-      providers.forEach(({ name, source }) => {
+      providers.forEach(({ source }) => {
         expect(Object.values(IntegrationSource)).toContain(source);
       });
     });
@@ -342,7 +342,7 @@ describe('Source Mapping Integration Tests', () => {
         { name: 'Robinhood', source: IntegrationSource.ROBINHOOD }
       ];
 
-      exchanges.forEach(({ name, source }) => {
+      exchanges.forEach(({ source }) => {
         expect(Object.values(IntegrationSource)).toContain(source);
       });
     });

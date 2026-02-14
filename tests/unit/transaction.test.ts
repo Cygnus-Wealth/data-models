@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Transaction, TransactionType, Chain } from '../../src/index';
+import { TransactionType, Chain } from '../../src/index';
 import {
   simpleTransfer,
   dexSwap,
