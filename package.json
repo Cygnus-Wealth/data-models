@@ -4,6 +4,44 @@
   "description": "Shared TypeScript data models for CygnusWealth project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./enums/AssetType": {
+      "types": "./dist/enums/AssetType.d.ts",
+      "import": "./dist/enums/AssetType.js"
+    },
+    "./enums/Chain": {
+      "types": "./dist/enums/Chain.d.ts",
+      "import": "./dist/enums/Chain.js"
+    },
+    "./enums/IntegrationSource": {
+      "types": "./dist/enums/IntegrationSource.d.ts",
+      "import": "./dist/enums/IntegrationSource.js"
+    },
+    "./enums/TransactionType": {
+      "types": "./dist/enums/TransactionType.d.ts",
+      "import": "./dist/enums/TransactionType.js"
+    },
+    "./enums/AccountType": {
+      "types": "./dist/enums/AccountType.d.ts",
+      "import": "./dist/enums/AccountType.js"
+    },
+    "./enums/LendingPositionType": {
+      "types": "./dist/enums/LendingPositionType.d.ts",
+      "import": "./dist/enums/LendingPositionType.js"
+    },
+    "./interfaces/*": {
+      "types": "./dist/interfaces/*.d.ts",
+      "import": "./dist/interfaces/*.js"
+    },
+    "./types/*": {
+      "types": "./dist/types/*.d.ts",
+      "import": "./dist/types/*.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "test": "vitest",
