@@ -1,5 +1,6 @@
 import { Chain } from '../enums/Chain';
 import { LendingPositionType } from '../enums/LendingPositionType';
+import { DeFiDiscoverySource } from '../enums/DeFiDiscoverySource';
 import { Asset } from './Asset';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -109,6 +110,9 @@ export interface LendingPosition {
 
   /** Current total value of position (positive for supply, negative for borrow debt) */
   value?: Price;
+
+  /** How this position was discovered during portfolio scanning */
+  discoverySource?: DeFiDiscoverySource;
 
   /** Protocol-specific metadata (collateral assets, liquidation price, etc.) */
   metadata?: Metadata;

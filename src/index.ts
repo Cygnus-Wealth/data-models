@@ -6,6 +6,9 @@ export { TransactionType } from './enums/TransactionType';
 export { AccountType } from './enums/AccountType';
 export { LendingPositionType } from './enums/LendingPositionType';
 export { VaultStrategyType } from './enums/VaultStrategyType';
+export { DeFiPositionType } from './enums/DeFiPositionType';
+export { DeFiProtocol } from './enums/DeFiProtocol';
+export { DeFiDiscoverySource } from './enums/DeFiDiscoverySource';
 
 // Base Interfaces
 export { BaseEntity } from './interfaces/BaseEntity';
@@ -25,6 +28,7 @@ export { LiquidityPosition } from './interfaces/LiquidityPosition';
 export { StakedPosition } from './interfaces/StakedPosition';
 export { LendingPosition } from './interfaces/LendingPosition';
 export { VaultPosition } from './interfaces/VaultPosition';
+export { DeFiPosition } from './interfaces/DeFiPosition';
 
 // Account and Portfolio Models
 export { Account } from './interfaces/Account';

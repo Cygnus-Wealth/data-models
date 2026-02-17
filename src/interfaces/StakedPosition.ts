@@ -1,4 +1,5 @@
 import { Chain } from '../enums/Chain';
+import { DeFiDiscoverySource } from '../enums/DeFiDiscoverySource';
 import { Asset } from './Asset';
 import { Balance } from './Balance';
 import { Price } from './Price';
@@ -102,6 +103,9 @@ export interface StakedPosition {
 
   /** Current total value of staked position plus rewards */
   value?: Price;
+
+  /** How this position was discovered during portfolio scanning */
+  discoverySource?: DeFiDiscoverySource;
 
   /** Protocol-specific metadata (validator performance, slashing history, etc.) */
   metadata?: Metadata;

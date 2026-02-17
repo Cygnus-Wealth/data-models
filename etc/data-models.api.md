@@ -128,6 +128,51 @@ export enum Chain {
 }
 
 // @public
+export enum DeFiDiscoverySource {
+    CONTRACT_QUERY = "CONTRACT_QUERY",
+    WALLET_TOKEN_SCAN = "WALLET_TOKEN_SCAN"
+}
+
+// @public
+export interface DeFiPosition {
+    apy?: number;
+    chain: Chain;
+    discoverySource?: DeFiDiscoverySource;
+    id: string;
+    metadata?: Metadata;
+    protocol: DeFiProtocol;
+    rewards: Balance[];
+    type: DeFiPositionType;
+    underlyingAssets: Balance[];
+    value?: Price;
+}
+
+// @public
+export enum DeFiPositionType {
+    FARMING = "FARMING",
+    LENDING_BORROW = "LENDING_BORROW",
+    LENDING_SUPPLY = "LENDING_SUPPLY",
+    LIQUIDITY_POOL = "LIQUIDITY_POOL",
+    PERP_POSITION = "PERP_POSITION",
+    STAKING = "STAKING",
+    VAULT = "VAULT"
+}
+
+// @public
+export enum DeFiProtocol {
+    AAVE = "AAVE",
+    BEEFY = "BEEFY",
+    COMPOUND = "COMPOUND",
+    JUPITER = "JUPITER",
+    LIDO = "LIDO",
+    MARINADE = "MARINADE",
+    ORCA = "ORCA",
+    OTHER = "OTHER",
+    RAYDIUM = "RAYDIUM",
+    UNISWAP = "UNISWAP"
+}
+
+// @public
 export interface EnvironmentConfig {
     chain: Chain;
     environment: NetworkEnvironment;
@@ -184,6 +229,7 @@ export interface LendingPosition {
     apy?: number;
     asset: Asset;
     chain: Chain;
+    discoverySource?: DeFiDiscoverySource;
     healthFactor?: number;
     id: string;
     liquidationThreshold?: number;
@@ -202,6 +248,7 @@ export enum LendingPositionType {
 // @public
 export interface LiquidityPosition {
     chain: Chain;
+    discoverySource?: DeFiDiscoverySource;
     feesEarned?: number;
     id: string;
     impermanentLoss?: number;
@@ -320,6 +367,7 @@ export interface StakedPosition {
     apr?: number;
     asset: Asset;
     chain: Chain;
+    discoverySource?: DeFiDiscoverySource;
     id: string;
     lockupPeriod?: number;
     metadata?: Metadata;
@@ -409,6 +457,7 @@ export interface VaultPosition {
     chain: Chain;
     depositAsset: Asset;
     depositedAmount: string;
+    discoverySource?: DeFiDiscoverySource;
     id: string;
     metadata?: Metadata;
     pricePerShare?: number;
