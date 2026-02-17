@@ -128,6 +128,23 @@ export enum Chain {
 }
 
 // @public
+export interface ChainRpcConfig {
+    cacheStaleAcceptanceMs: number;
+    chainId: number;
+    chainName: string;
+    endpoints: RpcEndpointConfig[];
+    totalOperationTimeoutMs: number;
+}
+
+// @public
+export interface CircuitBreakerConfig {
+    failureThreshold: number;
+    halfOpenMaxAttempts: number;
+    monitorWindowMs: number;
+    openDurationMs: number;
+}
+
+// @public
 export enum DeFiDiscoverySource {
     CONTRACT_QUERY = "CONTRACT_QUERY",
     WALLET_TOKEN_SCAN = "WALLET_TOKEN_SCAN"
@@ -188,6 +205,13 @@ export interface FilterOptions {
     minValue?: number;
     sources?: IntegrationSource[];
     timeRange?: TimeRange;
+}
+
+// @public
+export interface HealthCheckConfig {
+    intervalMs: number;
+    method: string;
+    timeoutMs: number;
 }
 
 // @public
@@ -357,6 +381,48 @@ export interface Price {
     source?: IntegrationSource;
     timestamp: Date;
     value?: number;
+}
+
+// @public
+export interface RetryConfig {
+    baseDelayMs: number;
+    maxAttempts: number;
+    maxDelayMs: number;
+}
+
+// @public
+export interface RpcEndpointConfig {
+    provider: string;
+    rateLimitRps: number;
+    role: RpcProviderRole;
+    timeoutMs: number;
+    type: RpcProviderType;
+    url: string;
+    weight?: number;
+    wsUrl?: string;
+}
+
+// @public
+export interface RpcProviderConfig {
+    chains: Record<string, ChainRpcConfig>;
+    circuitBreaker: CircuitBreakerConfig;
+    healthCheck: HealthCheckConfig;
+    retry: RetryConfig;
+}
+
+// @public
+export enum RpcProviderRole {
+    EMERGENCY = "EMERGENCY",
+    PRIMARY = "PRIMARY",
+    SECONDARY = "SECONDARY",
+    TERTIARY = "TERTIARY"
+}
+
+// @public
+export enum RpcProviderType {
+    COMMUNITY = "COMMUNITY",
+    MANAGED = "MANAGED",
+    PUBLIC = "PUBLIC"
 }
 
 // @public
