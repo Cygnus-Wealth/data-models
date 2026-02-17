@@ -1,4 +1,5 @@
 import { Chain } from '../enums/Chain';
+import { DeFiDiscoverySource } from '../enums/DeFiDiscoverySource';
 import { Balance } from './Balance';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -88,6 +89,9 @@ export interface LiquidityPosition {
 
   /** Impermanent loss compared to holding tokens (negative = loss, positive = gain) */
   impermanentLoss?: number;
+
+  /** How this position was discovered during portfolio scanning */
+  discoverySource?: DeFiDiscoverySource;
 
   /** Protocol-specific metadata (pool version, fee tier, range bounds, etc.) */
   metadata?: Metadata;

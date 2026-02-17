@@ -1,5 +1,6 @@
 import { Chain } from '../enums/Chain';
 import { VaultStrategyType } from '../enums/VaultStrategyType';
+import { DeFiDiscoverySource } from '../enums/DeFiDiscoverySource';
 import { Asset } from './Asset';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -117,6 +118,9 @@ export interface VaultPosition {
 
   /** Current total value of the vault position */
   value?: Price;
+
+  /** How this position was discovered during portfolio scanning */
+  discoverySource?: DeFiDiscoverySource;
 
   /** Protocol-specific metadata (strategy details, harvest frequency, TVL, etc.) */
   metadata?: Metadata;

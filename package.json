@@ -41,6 +41,26 @@
       "import": "./dist/enums/LendingPositionType.js",
       "require": "./dist/cjs/enums/LendingPositionType.js"
     },
+    "./enums/VaultStrategyType": {
+      "types": "./dist/enums/VaultStrategyType.d.ts",
+      "import": "./dist/enums/VaultStrategyType.js",
+      "require": "./dist/cjs/enums/VaultStrategyType.js"
+    },
+    "./enums/DeFiPositionType": {
+      "types": "./dist/enums/DeFiPositionType.d.ts",
+      "import": "./dist/enums/DeFiPositionType.js",
+      "require": "./dist/cjs/enums/DeFiPositionType.js"
+    },
+    "./enums/DeFiProtocol": {
+      "types": "./dist/enums/DeFiProtocol.d.ts",
+      "import": "./dist/enums/DeFiProtocol.js",
+      "require": "./dist/cjs/enums/DeFiProtocol.js"
+    },
+    "./enums/DeFiDiscoverySource": {
+      "types": "./dist/enums/DeFiDiscoverySource.d.ts",
+      "import": "./dist/enums/DeFiDiscoverySource.js",
+      "require": "./dist/cjs/enums/DeFiDiscoverySource.js"
+    },
     "./interfaces/*": {
       "types": "./dist/interfaces/*.d.ts",
       "import": "./dist/interfaces/*.js",
