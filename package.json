@@ -61,6 +61,16 @@
       "import": "./dist/enums/DeFiDiscoverySource.js",
       "require": "./dist/cjs/enums/DeFiDiscoverySource.js"
     },
+    "./enums/RpcProviderRole": {
+      "types": "./dist/enums/RpcProviderRole.d.ts",
+      "import": "./dist/enums/RpcProviderRole.js",
+      "require": "./dist/cjs/enums/RpcProviderRole.js"
+    },
+    "./enums/RpcProviderType": {
+      "types": "./dist/enums/RpcProviderType.d.ts",
+      "import": "./dist/enums/RpcProviderType.js",
+      "require": "./dist/cjs/enums/RpcProviderType.js"
+    },
     "./interfaces/*": {
       "types": "./dist/interfaces/*.d.ts",
       "import": "./dist/interfaces/*.js",
