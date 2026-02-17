@@ -4,6 +4,7 @@ import { Balance } from './Balance';
 import { LiquidityPosition } from './LiquidityPosition';
 import { StakedPosition } from './StakedPosition';
 import { LendingPosition } from './LendingPosition';
+import { VaultPosition } from './VaultPosition';
 import { NFT } from './NFT';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -114,6 +115,9 @@ export interface Account {
 
   /** Array of lending/borrowing positions (for DeFi money markets) */
   lendingPositions?: LendingPosition[];
+
+  /** Array of yield vault positions (for vault deposits) */
+  vaultPositions?: VaultPosition[];
 
   /** Array of NFTs held in this account */
   nfts?: NFT[];

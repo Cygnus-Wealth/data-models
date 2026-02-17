@@ -1,4 +1,4 @@
-import { LiquidityPosition, StakedPosition, LendingPosition, LendingPositionType, Chain } from '../../src/index';
+import { LiquidityPosition, StakedPosition, LendingPosition, LendingPositionType, VaultPosition, VaultStrategyType, Chain } from '../../src/index';
 import { ethAsset, usdcAsset, solAsset } from './assets';
 
 /**
@@ -259,6 +259,80 @@ export const minimalLendingPosition: LendingPosition = {
   amount: '1.0'
 };
 
+// Vault Positions
+export const yearnUsdcVault: VaultPosition = {
+  id: 'yearn-usdc-vault-1',
+  protocol: 'Yearn V3',
+  vaultAddress: '0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE',
+  vaultName: 'USDC yVault',
+  chain: Chain.ETHEREUM,
+  strategyType: VaultStrategyType.YIELD_AGGREGATOR,
+  depositAsset: usdcAsset,
+  depositedAmount: '50000.000000',
+  shareBalance: '48500.000000',
+  pricePerShare: 1.0309,
+  apy: 8.5,
+  value: {
+    value: 50000,
+    currency: 'USD',
+    timestamp: new Date('2025-10-11T12:00:00Z')
+  }
+};
+
+export const beefyLpVault: VaultPosition = {
+  id: 'beefy-arb-eth-usdc-1',
+  protocol: 'Beefy',
+  vaultAddress: '0xDeadBeef1234567890abcdef1234567890abcdef',
+  vaultName: 'mooArbETH-USDC',
+  chain: Chain.ARBITRUM,
+  strategyType: VaultStrategyType.LIQUIDITY_PROVISION,
+  depositAsset: ethAsset,
+  depositedAmount: '2.5',
+  shareBalance: '2.35',
+  pricePerShare: 1.0638,
+  apy: 12.3,
+  value: {
+    value: 5000,
+    currency: 'USD',
+    timestamp: new Date('2025-10-11T12:00:00Z')
+  },
+  metadata: {
+    'beefy:tvl': 15000000,
+    'beefy:harvestFrequency': 'daily'
+  }
+};
+
+export const sommelierStructuredVault: VaultPosition = {
+  id: 'sommelier-eth-call-1',
+  protocol: 'Sommelier',
+  vaultAddress: '0x1234567890abcdef1234567890abcdef12345678',
+  vaultName: 'Real Yield ETH',
+  chain: Chain.ETHEREUM,
+  strategyType: VaultStrategyType.STRUCTURED_PRODUCT,
+  depositAsset: ethAsset,
+  depositedAmount: '10.0',
+  shareBalance: '9.8',
+  pricePerShare: 1.0204,
+  apy: 15.2,
+  value: {
+    value: 20000,
+    currency: 'USD',
+    timestamp: new Date('2025-10-11T12:00:00Z')
+  }
+};
+
+// Minimal vault position (only required fields)
+export const minimalVaultPosition: VaultPosition = {
+  id: 'minimal-vault-1',
+  protocol: 'TestVault',
+  vaultAddress: '0xabc',
+  vaultName: 'Test Vault',
+  chain: Chain.ETHEREUM,
+  strategyType: VaultStrategyType.OTHER,
+  depositAsset: ethAsset,
+  depositedAmount: '1.0'
+};
+
 // All positions arrays for bulk testing
 export const allLiquidityPositions: LiquidityPosition[] = [
   uniswapLPPosition,
@@ -279,4 +353,11 @@ export const allLendingPositions: LendingPosition[] = [
   compoundSupplyPosition,
   riskyBorrowPosition,
   minimalLendingPosition
+];
+
+export const allVaultPositions: VaultPosition[] = [
+  yearnUsdcVault,
+  beefyLpVault,
+  sommelierStructuredVault,
+  minimalVaultPosition
 ];

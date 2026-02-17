@@ -5,6 +5,7 @@ export { IntegrationSource } from './enums/IntegrationSource';
 export { TransactionType } from './enums/TransactionType';
 export { AccountType } from './enums/AccountType';
 export { LendingPositionType } from './enums/LendingPositionType';
+export { VaultStrategyType } from './enums/VaultStrategyType';
 
 // Base Interfaces
 export { BaseEntity } from './interfaces/BaseEntity';
@@ -23,6 +24,7 @@ export { Balance } from './interfaces/Balance';
 export { LiquidityPosition } from './interfaces/LiquidityPosition';
 export { StakedPosition } from './interfaces/StakedPosition';
 export { LendingPosition } from './interfaces/LendingPosition';
+export { VaultPosition } from './interfaces/VaultPosition';
 
 // Account and Portfolio Models
 export { Account } from './interfaces/Account';

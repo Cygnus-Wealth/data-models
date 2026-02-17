@@ -5,7 +5,8 @@ import {
   IntegrationSource,
   TransactionType,
   AccountType,
-  LendingPositionType
+  LendingPositionType,
+  VaultStrategyType
 } from '../../src/index';
 
 /**
@@ -378,6 +379,27 @@ describe('Enum Types', () => {
       expect(supplyPos.type).toBe(LendingPositionType.SUPPLY);
       expect(borrowPos.type).toBe(LendingPositionType.BORROW);
       expect(supplyPos.type).not.toBe(borrowPos.type);
+    });
+  });
+
+  describe('VaultStrategyType', () => {
+    it('should have all expected strategy types', () => {
+      expect(VaultStrategyType.YIELD_AGGREGATOR).toBe('YIELD_AGGREGATOR');
+      expect(VaultStrategyType.LENDING).toBe('LENDING');
+      expect(VaultStrategyType.LIQUIDITY_PROVISION).toBe('LIQUIDITY_PROVISION');
+      expect(VaultStrategyType.STRUCTURED_PRODUCT).toBe('STRUCTURED_PRODUCT');
+      expect(VaultStrategyType.OTHER).toBe('OTHER');
+    });
+
+    it('should have unique values (no duplicates)', () => {
+      const values = Object.values(VaultStrategyType);
+      const uniqueValues = new Set(values);
+      expect(values.length).toBe(uniqueValues.size);
+    });
+
+    it('should have exactly 5 types', () => {
+      const values = Object.values(VaultStrategyType);
+      expect(values).toHaveLength(5);
     });
   });
 
