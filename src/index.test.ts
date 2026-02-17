@@ -6,6 +6,7 @@ import {
   TransactionType,
   AccountType,
   LendingPositionType,
+  VaultStrategyType,
   Asset,
   NFT,
   Price,
@@ -14,6 +15,7 @@ import {
   LiquidityPosition,
   StakedPosition,
   LendingPosition,
+  VaultPosition,
   Account,
   Portfolio,
   Transaction,
@@ -238,6 +240,31 @@ describe('CygnusWealth Data Models', () => {
 
       expect(lendingPosition.type).toBe(LendingPositionType.SUPPLY);
       expect(lendingPosition.apy).toBe(3.2);
+    });
+
+    it('should create a valid VaultPosition', () => {
+      const vaultPosition: VaultPosition = {
+        id: 'yearn-usdc-vault',
+        protocol: 'Yearn V3',
+        vaultAddress: '0xa354F35829Ae975e850e23e9615b11Da1B3dC4DE',
+        vaultName: 'USDC yVault',
+        chain: Chain.ETHEREUM,
+        strategyType: VaultStrategyType.YIELD_AGGREGATOR,
+        depositAsset: {
+          id: 'usdc-1',
+          symbol: 'USDC',
+          name: 'USD Coin',
+          type: AssetType.CRYPTOCURRENCY,
+          chain: Chain.ETHEREUM
+        },
+        depositedAmount: '50000',
+        shareBalance: '48500',
+        pricePerShare: 1.0309,
+        apy: 8.5
+      };
+
+      expect(vaultPosition.strategyType).toBe(VaultStrategyType.YIELD_AGGREGATOR);
+      expect(vaultPosition.pricePerShare).toBe(1.0309);
     });
   });
 

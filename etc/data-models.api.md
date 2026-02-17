@@ -19,6 +19,7 @@ export interface Account {
     stakedPositions?: StakedPosition[];
     totalValue?: Price;
     type: AccountType;
+    vaultPositions?: VaultPosition[];
 }
 
 // @public
@@ -400,6 +401,32 @@ export enum TransactionType {
     TRANSFER_IN = "TRANSFER_IN",
     TRANSFER_OUT = "TRANSFER_OUT",
     UNSTAKE = "UNSTAKE"
+}
+
+// @public
+export interface VaultPosition {
+    apy?: number;
+    chain: Chain;
+    depositAsset: Asset;
+    depositedAmount: string;
+    id: string;
+    metadata?: Metadata;
+    pricePerShare?: number;
+    protocol: string;
+    shareBalance?: string;
+    strategyType: VaultStrategyType;
+    value?: Price;
+    vaultAddress: string;
+    vaultName: string;
+}
+
+// @public
+export enum VaultStrategyType {
+    LENDING = "LENDING",
+    LIQUIDITY_PROVISION = "LIQUIDITY_PROVISION",
+    OTHER = "OTHER",
+    STRUCTURED_PRODUCT = "STRUCTURED_PRODUCT",
+    YIELD_AGGREGATOR = "YIELD_AGGREGATOR"
 }
 
 // (No @packageDocumentation comment for this package)

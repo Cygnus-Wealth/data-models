@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { LendingPositionType, Chain } from '../../src/index';
+import { LendingPositionType, VaultStrategyType, Chain } from '../../src/index';
 import {
   uniswapLPPosition,
   curveLPPosition,
@@ -8,11 +8,15 @@ import {
   solStakingPosition,
   aaveSupplyPosition,
   aaveBorrowPosition,
-  riskyBorrowPosition
+  riskyBorrowPosition,
+  yearnUsdcVault,
+  beefyLpVault,
+  sommelierStructuredVault,
+  minimalVaultPosition
 } from '../fixtures';
 
 /**
- * Unit tests for Position types (LiquidityPosition, StakedPosition, LendingPosition).
+ * Unit tests for Position types (LiquidityPosition, StakedPosition, LendingPosition, VaultPosition).
  * Coverage target: 95%
  */
 
@@ -150,6 +154,78 @@ describe('Position Models', () => {
     it('should handle positive value for SUPPLY positions', () => {
       expect(aaveSupplyPosition.value?.value).toBe(50125.50);
       expect(aaveSupplyPosition.value?.value).toBeGreaterThan(0);
+    });
+  });
+
+  describe('VaultPosition', () => {
+    it('should create yield aggregator vault position', () => {
+      expect(yearnUsdcVault.protocol).toBe('Yearn V3');
+      expect(yearnUsdcVault.strategyType).toBe(VaultStrategyType.YIELD_AGGREGATOR);
+      expect(yearnUsdcVault.depositAsset.symbol).toBe('USDC');
+    });
+
+    it('should create LP strategy vault position', () => {
+      expect(beefyLpVault.protocol).toBe('Beefy');
+      expect(beefyLpVault.strategyType).toBe(VaultStrategyType.LIQUIDITY_PROVISION);
+      expect(beefyLpVault.chain).toBe(Chain.ARBITRUM);
+    });
+
+    it('should create structured product vault position', () => {
+      expect(sommelierStructuredVault.protocol).toBe('Sommelier');
+      expect(sommelierStructuredVault.strategyType).toBe(VaultStrategyType.STRUCTURED_PRODUCT);
+    });
+
+    it('should track vault address', () => {
+      expect(yearnUsdcVault.vaultAddress).toBeDefined();
+      expect(yearnUsdcVault.vaultAddress.startsWith('0x')).toBe(true);
+    });
+
+    it('should track deposited amount as string', () => {
+      expect(yearnUsdcVault.depositedAmount).toBe('50000.000000');
+      expect(typeof yearnUsdcVault.depositedAmount).toBe('string');
+    });
+
+    it('should track share balance', () => {
+      expect(yearnUsdcVault.shareBalance).toBe('48500.000000');
+      expect(typeof yearnUsdcVault.shareBalance).toBe('string');
+    });
+
+    it('should track price per share > 1 for profitable vaults', () => {
+      expect(yearnUsdcVault.pricePerShare).toBe(1.0309);
+      expect(yearnUsdcVault.pricePerShare).toBeGreaterThan(1);
+    });
+
+    it('should track APY', () => {
+      expect(yearnUsdcVault.apy).toBe(8.5);
+      expect(beefyLpVault.apy).toBe(12.3);
+      expect(sommelierStructuredVault.apy).toBe(15.2);
+    });
+
+    it('should calculate position value', () => {
+      expect(yearnUsdcVault.value?.value).toBe(50000);
+      expect(yearnUsdcVault.value?.currency).toBe('USD');
+    });
+
+    it('should support metadata for protocol-specific data', () => {
+      expect(beefyLpVault.metadata).toBeDefined();
+      expect(beefyLpVault.metadata?.['beefy:tvl']).toBe(15000000);
+      expect(beefyLpVault.metadata?.['beefy:harvestFrequency']).toBe('daily');
+    });
+
+    it('should create minimal vault position with only required fields', () => {
+      expect(minimalVaultPosition.id).toBe('minimal-vault-1');
+      expect(minimalVaultPosition.protocol).toBe('TestVault');
+      expect(minimalVaultPosition.strategyType).toBe(VaultStrategyType.OTHER);
+      expect(minimalVaultPosition.shareBalance).toBeUndefined();
+      expect(minimalVaultPosition.pricePerShare).toBeUndefined();
+      expect(minimalVaultPosition.apy).toBeUndefined();
+      expect(minimalVaultPosition.value).toBeUndefined();
+      expect(minimalVaultPosition.metadata).toBeUndefined();
+    });
+
+    it('should have vault name for display', () => {
+      expect(yearnUsdcVault.vaultName).toBe('USDC yVault');
+      expect(beefyLpVault.vaultName).toBe('mooArbETH-USDC');
     });
   });
 });
