@@ -1,4 +1,5 @@
 import { IntegrationSource } from '../enums/IntegrationSource';
+import { AccountId } from '../types/AccountId';
 import { Metadata } from './Metadata';
 
 /**
@@ -66,6 +67,9 @@ export interface IntegrationCredentials {
 
   /** Blockchain network ID for wallet connections (e.g., '1' for Ethereum mainnet) */
   chainId?: string;
+
+  /** Account identifier when this integration is account-specific */
+  accountId?: AccountId;
 
   /** Source-specific metadata (permissions, connection settings, etc.) */
   metadata?: Metadata;

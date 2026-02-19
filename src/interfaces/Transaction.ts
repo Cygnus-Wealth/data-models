@@ -1,5 +1,7 @@
 import { TransactionType } from '../enums/TransactionType';
 import { Chain } from '../enums/Chain';
+import { AccountId } from '../types/AccountId';
+import { WalletConnectionId } from '../types/WalletConnectionId';
 import { Asset } from './Asset';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -97,6 +99,9 @@ export interface Transaction {
 
   /** Reference to the Account.id where this transaction occurred */
   accountId: string;
+
+  /** Wallet connection this transaction belongs to, or 'watch' for watch addresses */
+  walletConnectionId?: WalletConnectionId | 'watch';
 
   /** Type of transaction operation */
   type: TransactionType;
