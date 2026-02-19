@@ -24,7 +24,7 @@ import { Chain } from '../enums/Chain';
  * @since 1.3.0
  * @stability extended
  *
- * @see {@link AccountId} for identifier format (watch:{checksummedAddress})
+ * @see {@link AccountId} for identifier format (watch:\{checksummedAddress\})
  */
 export interface WatchAddress {
   /** Account identifier: `watch:{checksummedAddress}` */
