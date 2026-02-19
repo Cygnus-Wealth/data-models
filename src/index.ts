@@ -37,6 +37,31 @@ export { Account } from './interfaces/Account';
 export { Portfolio } from './interfaces/Portfolio';
 export { PortfolioAsset } from './interfaces/PortfolioAsset';
 
+// Multi-Wallet Identity Types
+export type { WalletProviderId } from './types/WalletProviderId';
+export type { WalletConnectionId } from './types/WalletConnectionId';
+export type { AccountId } from './types/AccountId';
+
+// Multi-Wallet Connection Models
+export type { WalletConnection } from './interfaces/WalletConnection';
+export type { ConnectedAccount } from './interfaces/ConnectedAccount';
+export type { WatchAddress } from './interfaces/WatchAddress';
+export type { AccountGroup } from './interfaces/AccountGroup';
+
+// Multi-Wallet Portfolio Models
+export type { AccountPortfolio } from './interfaces/AccountPortfolio';
+export type { WalletPortfolio } from './interfaces/WalletPortfolio';
+export type { GroupPortfolio } from './interfaces/GroupPortfolio';
+export type { AccountSummary } from './interfaces/AccountSummary';
+export type { AssetDistribution } from './interfaces/AssetDistribution';
+export type { AccountAssetEntry } from './interfaces/AccountAssetEntry';
+
+// Multi-Wallet Integration Models
+export type { TrackedAddress } from './interfaces/TrackedAddress';
+export type { AccountMetadata } from './interfaces/AccountMetadata';
+export type { AddressRequest } from './interfaces/AddressRequest';
+export type { AccountBalanceList, AccountBalance, AccountError } from './interfaces/AccountBalanceList';
+
 // Transaction Models
 export { Transaction } from './interfaces/Transaction';
 

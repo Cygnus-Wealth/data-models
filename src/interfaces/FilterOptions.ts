@@ -1,6 +1,8 @@
 import { Chain } from '../enums/Chain';
 import { AssetType } from '../enums/AssetType';
 import { IntegrationSource } from '../enums/IntegrationSource';
+import { AccountId } from '../types/AccountId';
+import { WalletConnectionId } from '../types/WalletConnectionId';
 import { TimeRange } from '../types/TimeRange';
 
 /**
@@ -83,4 +85,13 @@ export interface FilterOptions {
 
   /** Maximum value threshold (inclusive, in base currency like USD) */
   maxValue?: number;
+
+  /** Filter by account identifiers (OR within array) */
+  accountIds?: AccountId[];
+
+  /** Filter by wallet connection identifiers (OR within array) */
+  walletConnectionIds?: WalletConnectionId[];
+
+  /** Filter by account group identifiers (OR within array) */
+  groupIds?: string[];
 }

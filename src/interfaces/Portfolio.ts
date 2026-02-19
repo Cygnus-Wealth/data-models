@@ -1,4 +1,8 @@
+import { AccountId } from '../types/AccountId';
+import { WalletConnectionId } from '../types/WalletConnectionId';
 import { Account } from './Account';
+import { AccountPortfolio } from './AccountPortfolio';
+import { WalletPortfolio } from './WalletPortfolio';
 import { Price } from './Price';
 import { PortfolioAsset } from './PortfolioAsset';
 import { Metadata } from './Metadata';
@@ -132,6 +136,12 @@ export interface Portfolio {
 
   /** Timestamp of last portfolio data update */
   lastUpdated: Date;
+
+  /** Per-account portfolio breakdown for multi-wallet attribution */
+  accountBreakdown?: Map<AccountId, AccountPortfolio>;
+
+  /** Per-wallet portfolio breakdown for multi-wallet attribution */
+  walletBreakdown?: Map<WalletConnectionId, WalletPortfolio>;
 
   /** Portfolio-specific metadata (theme, display preferences, etc.) */
   metadata?: Metadata;

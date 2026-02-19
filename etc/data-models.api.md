@@ -23,6 +23,88 @@ export interface Account {
 }
 
 // @public
+export interface AccountAssetEntry {
+    accountId: AccountId;
+    accountLabel: string;
+    connectionLabel: string;
+    percentage: number;
+    quantity: Balance;
+    value: Price;
+}
+
+// @public
+export interface AccountBalance {
+    accountId: AccountId;
+    address: string;
+    chainId: Chain;
+    nativeBalance: Balance;
+    tokenBalances: Balance[];
+}
+
+// @public
+export interface AccountBalanceList {
+    balances: AccountBalance[];
+    errors: AccountError[];
+    timestamp: string;
+}
+
+// @public
+export interface AccountError {
+    accountId: AccountId;
+    chainId: Chain;
+    code?: string;
+    message: string;
+}
+
+// @public
+export interface AccountGroup {
+    accountIds: AccountId[];
+    createdAt: string;
+    groupId: string;
+    groupName: string;
+}
+
+// @public
+export type AccountId = string;
+
+// @public
+export interface AccountMetadata {
+    accountId: AccountId;
+    accountLabel: string;
+    address: string;
+    connectionLabel: string;
+    discoveredAt: string;
+    groups: string[];
+    isActive: boolean;
+    isStale: boolean;
+    providerId: WalletProviderId | 'watch';
+    walletConnectionId: WalletConnectionId | 'watch';
+}
+
+// @public
+export interface AccountPortfolio {
+    accountId: AccountId;
+    accountLabel: string;
+    assets: Asset[];
+    lastUpdated: string;
+    providerName: string;
+    totalValue: Price;
+    walletConnectionId: WalletConnectionId | 'watch';
+}
+
+// @public
+export interface AccountSummary {
+    accountId: AccountId;
+    accountLabel: string;
+    assetCount: number;
+    chains: Chain[];
+    connectionLabel: string;
+    lastUpdated: string;
+    providerId: WalletProviderId | 'watch';
+    totalValue: Price;
+}
+
+// @public
 export enum AccountType {
     BROKERAGE = "BROKERAGE",
     DEFI = "DEFI",
@@ -34,6 +116,13 @@ export enum AccountType {
     SPOT = "SPOT",
     STAKING = "STAKING",
     WALLET = "WALLET"
+}
+
+// @public
+export interface AddressRequest {
+    accountId: AccountId;
+    address: string;
+    chainScope: Chain[];
 }
 
 // @public
@@ -53,6 +142,7 @@ export interface ApiResponse<T extends object> {
 
 // @public
 export interface Asset {
+    accountId?: AccountId;
     chain?: Chain;
     cmc_id?: string;
     coingeckoId?: string;
@@ -66,6 +156,15 @@ export interface Asset {
     name: string;
     symbol: string;
     type: AssetType;
+    walletConnectionId?: WalletConnectionId | 'watch';
+}
+
+// @public
+export interface AssetDistribution {
+    distribution: AccountAssetEntry[];
+    symbol: string;
+    totalQuantity: Balance;
+    totalValue: Price;
 }
 
 // @public
@@ -145,6 +244,18 @@ export interface CircuitBreakerConfig {
 }
 
 // @public
+export interface ConnectedAccount {
+    accountId: AccountId;
+    accountLabel: string;
+    address: string;
+    chainScope: Chain[];
+    discoveredAt: string;
+    isActive: boolean;
+    isStale: boolean;
+    source: 'provider' | 'manual';
+}
+
+// @public
 export enum DeFiDiscoverySource {
     CONTRACT_QUERY = "CONTRACT_QUERY",
     WALLET_TOKEN_SCAN = "WALLET_TOKEN_SCAN"
@@ -152,6 +263,7 @@ export enum DeFiDiscoverySource {
 
 // @public
 export interface DeFiPosition {
+    accountId?: AccountId;
     apy?: number;
     chain: Chain;
     discoverySource?: DeFiDiscoverySource;
@@ -199,12 +311,24 @@ export interface EnvironmentConfig {
 
 // @public
 export interface FilterOptions {
+    accountIds?: AccountId[];
     assetTypes?: AssetType[];
     chains?: Chain[];
+    groupIds?: string[];
     maxValue?: number;
     minValue?: number;
     sources?: IntegrationSource[];
     timeRange?: TimeRange;
+    walletConnectionIds?: WalletConnectionId[];
+}
+
+// @public
+export interface GroupPortfolio {
+    accounts: AccountPortfolio[];
+    groupId: string;
+    groupName: string;
+    lastUpdated: string;
+    totalValue: Price;
 }
 
 // @public
@@ -216,6 +340,7 @@ export interface HealthCheckConfig {
 
 // @public
 export interface IntegrationCredentials {
+    accountId?: AccountId;
     apiKey?: string;
     apiSecret?: string;
     chainId?: string;
@@ -335,6 +460,7 @@ export interface PaginatedResponse<T> {
 
 // @public
 export interface Portfolio {
+    accountBreakdown?: Map<AccountId, AccountPortfolio>;
     accounts?: Account[];
     id: string;
     items?: PortfolioAsset[];
@@ -354,6 +480,7 @@ export interface Portfolio {
         value: Price;
     }>;
     userId?: string;
+    walletBreakdown?: Map<WalletConnectionId, WalletPortfolio>;
 }
 
 // @public
@@ -463,6 +590,17 @@ export type TimeRange = {
 };
 
 // @public
+export interface TrackedAddress {
+    accountId: AccountId;
+    accountLabel: string;
+    address: string;
+    chainScope: Chain[];
+    connectionLabel: string;
+    providerId: WalletProviderId | 'watch';
+    walletConnectionId: WalletConnectionId | 'watch';
+}
+
+// @public
 export interface Transaction {
     accountId: string;
     assetsIn?: Array<{
@@ -492,6 +630,7 @@ export interface Transaction {
     timestamp: Date;
     to?: string;
     type: TransactionType;
+    walletConnectionId?: WalletConnectionId | 'watch';
 }
 
 // @public
@@ -542,6 +681,45 @@ export enum VaultStrategyType {
     OTHER = "OTHER",
     STRUCTURED_PRODUCT = "STRUCTURED_PRODUCT",
     YIELD_AGGREGATOR = "YIELD_AGGREGATOR"
+}
+
+// @public
+export interface WalletConnection {
+    accounts: ConnectedAccount[];
+    activeAccountAddress: string | null;
+    connectedAt: string;
+    connectionId: WalletConnectionId;
+    connectionLabel: string;
+    lastActiveAt: string;
+    providerIcon: string;
+    providerId: WalletProviderId;
+    providerName: string;
+    sessionStatus: 'active' | 'stale' | 'disconnected';
+    supportedChains: Chain[];
+}
+
+// @public
+export type WalletConnectionId = string;
+
+// @public
+export interface WalletPortfolio {
+    accounts: AccountPortfolio[];
+    connectionLabel: string;
+    providerName: string;
+    totalValue: Price;
+    walletConnectionId: WalletConnectionId;
+}
+
+// @public
+export type WalletProviderId = 'metamask' | 'rabby' | 'walletconnect' | 'coinbase-wallet' | 'trust-wallet' | 'frame' | 'crypto-com-onchain' | 'phantom' | 'solflare' | 'backpack' | 'exodus' | 'manual';
+
+// @public
+export interface WatchAddress {
+    accountId: AccountId;
+    addedAt: string;
+    address: string;
+    addressLabel: string;
+    chainScope: Chain[];
 }
 
 // (No @packageDocumentation comment for this package)

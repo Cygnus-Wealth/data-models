@@ -1,5 +1,7 @@
 import { AssetType } from '../enums/AssetType';
 import { Chain } from '../enums/Chain';
+import { AccountId } from '../types/AccountId';
+import { WalletConnectionId } from '../types/WalletConnectionId';
 import { Metadata } from './Metadata';
 
 /**
@@ -84,6 +86,12 @@ export interface Asset {
 
   /** ISIN identifier for international securities */
   isin?: string;
+
+  /** Account holding this asset (for multi-wallet multi-account attribution) */
+  accountId?: AccountId;
+
+  /** Wallet connection this asset belongs to, or 'watch' for watch addresses */
+  walletConnectionId?: WalletConnectionId | 'watch';
 
   /** Source-specific additional data and custom fields */
   metadata?: Metadata;

@@ -2,6 +2,7 @@ import { Chain } from '../enums/Chain';
 import { DeFiPositionType } from '../enums/DeFiPositionType';
 import { DeFiProtocol } from '../enums/DeFiProtocol';
 import { DeFiDiscoverySource } from '../enums/DeFiDiscoverySource';
+import { AccountId } from '../types/AccountId';
 import { Balance } from './Balance';
 import { Price } from './Price';
 import { Metadata } from './Metadata';
@@ -80,6 +81,9 @@ export interface DeFiPosition {
 
   /** How this position was discovered during portfolio scanning */
   discoverySource?: DeFiDiscoverySource;
+
+  /** Account identifier for multi-wallet attribution (alongside ownerAddress) */
+  accountId?: AccountId;
 
   /** Protocol-specific metadata (version, contract addresses, TVL, etc.) */
   metadata?: Metadata;
