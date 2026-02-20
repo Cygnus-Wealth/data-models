@@ -2,6 +2,8 @@ import { ChainRpcConfig } from './ChainRpcConfig';
 import { CircuitBreakerConfig } from './CircuitBreakerConfig';
 import { RetryConfig } from './RetryConfig';
 import { HealthCheckConfig } from './HealthCheckConfig';
+import { PrivacyConfig } from './PrivacyConfig';
+import { UserRpcConfig } from './UserRpcConfig';
 
 /**
  * Top-level RPC provider configuration for multi-chain operations.
@@ -57,6 +59,8 @@ import { HealthCheckConfig } from './HealthCheckConfig';
  * @see {@link CircuitBreakerConfig} for failure isolation policy
  * @see {@link RetryConfig} for retry strategy
  * @see {@link HealthCheckConfig} for endpoint monitoring
+ * @see {@link PrivacyConfig} for privacy and rotation policy
+ * @see {@link UserRpcConfig} for user-provided endpoint overrides
  */
 export interface RpcProviderConfig {
   /** Per-chain RPC configurations, keyed by chain ID string (e.g. "1", "137") */
@@ -70,4 +74,10 @@ export interface RpcProviderConfig {
 
   /** Health check policy for endpoint monitoring */
   healthCheck: HealthCheckConfig;
+
+  /** Privacy and endpoint rotation policy */
+  privacy: PrivacyConfig;
+
+  /** Optional user-provided RPC endpoint overrides */
+  userOverrides?: UserRpcConfig;
 }

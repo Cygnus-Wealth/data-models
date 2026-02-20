@@ -87,6 +87,9 @@ export { CircuitBreakerConfig } from './interfaces/CircuitBreakerConfig';
 export { RetryConfig } from './interfaces/RetryConfig';
 export { HealthCheckConfig } from './interfaces/HealthCheckConfig';
 export { RpcProviderConfig } from './interfaces/RpcProviderConfig';
+export type { UserRpcEndpoint } from './interfaces/UserRpcEndpoint';
+export type { UserRpcConfig } from './interfaces/UserRpcConfig';
+export type { PrivacyConfig } from './interfaces/PrivacyConfig';
 
 // Network Environment
 export { NetworkEnvironment, EnvironmentConfig } from './types/NetworkEnvironment';

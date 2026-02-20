@@ -9,6 +9,11 @@ import {
   HealthCheckConfig,
   RpcProviderConfig
 } from '../../src/index';
+import type {
+  UserRpcEndpoint,
+  UserRpcConfig,
+  PrivacyConfig
+} from '../../src/index';
 
 /**
  * Unit tests for RPC Provider Configuration types.
@@ -56,6 +61,8 @@ describe('RPC Provider Configuration Types', () => {
       expect(RpcProviderType.MANAGED).toBe('MANAGED');
       expect(RpcProviderType.PUBLIC).toBe('PUBLIC');
       expect(RpcProviderType.COMMUNITY).toBe('COMMUNITY');
+      expect(RpcProviderType.DECENTRALIZED).toBe('DECENTRALIZED');
+      expect(RpcProviderType.USER).toBe('USER');
     });
 
     it('should have unique values (no duplicates)', () => {
@@ -64,9 +71,9 @@ describe('RPC Provider Configuration Types', () => {
       expect(values.length).toBe(uniqueValues.size);
     });
 
-    it('should have exactly 3 types', () => {
+    it('should have exactly 5 types', () => {
       const values = Object.values(RpcProviderType);
-      expect(values).toHaveLength(3);
+      expect(values).toHaveLength(5);
     });
 
     it('should distinguish infrastructure ownership models', () => {
@@ -336,6 +343,11 @@ describe('RPC Provider Configuration Types', () => {
           intervalMs: 30000,
           timeoutMs: 5000,
           method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: false,
+          privacyMode: false,
+          queryJitterMs: 0
         }
       };
 
@@ -373,6 +385,11 @@ describe('RPC Provider Configuration Types', () => {
           intervalMs: 30000,
           timeoutMs: 5000,
           method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: false,
+          privacyMode: false,
+          queryJitterMs: 0
         }
       };
 
@@ -418,6 +435,11 @@ describe('RPC Provider Configuration Types', () => {
           intervalMs: 30000,
           timeoutMs: 5000,
           method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: false,
+          privacyMode: false,
+          queryJitterMs: 0
         }
       };
 
@@ -432,6 +454,299 @@ describe('RPC Provider Configuration Types', () => {
     });
   });
 
+  describe('UserRpcEndpoint', () => {
+    it('should accept a fully specified user endpoint', () => {
+      const endpoint: UserRpcEndpoint = {
+        chainId: '1',
+        url: 'https://my-node.example.com/rpc',
+        wsUrl: 'wss://my-node.example.com/ws',
+        label: 'My Private Node'
+      };
+
+      expect(endpoint.chainId).toBe('1');
+      expect(endpoint.url).toBe('https://my-node.example.com/rpc');
+      expect(endpoint.wsUrl).toBe('wss://my-node.example.com/ws');
+      expect(endpoint.label).toBe('My Private Node');
+    });
+
+    it('should accept an endpoint without optional fields', () => {
+      const endpoint: UserRpcEndpoint = {
+        chainId: '137',
+        url: 'https://polygon-node.example.com/rpc'
+      };
+
+      expect(endpoint.chainId).toBe('137');
+      expect(endpoint.url).toBe('https://polygon-node.example.com/rpc');
+      expect(endpoint.wsUrl).toBeUndefined();
+      expect(endpoint.label).toBeUndefined();
+    });
+
+    it('should be JSON serializable', () => {
+      const endpoint: UserRpcEndpoint = {
+        chainId: '42161',
+        url: 'https://arb-node.example.com/rpc',
+        label: 'Arbitrum Node'
+      };
+
+      const json = JSON.stringify(endpoint);
+      const parsed = JSON.parse(json);
+
+      expect(parsed).toEqual(endpoint);
+    });
+  });
+
+  describe('UserRpcConfig', () => {
+    it('should accept override mode config', () => {
+      const config: UserRpcConfig = {
+        endpoints: [
+          { chainId: '1', url: 'https://my-eth.example.com/rpc' }
+        ],
+        mode: 'override'
+      };
+
+      expect(config.endpoints).toHaveLength(1);
+      expect(config.mode).toBe('override');
+    });
+
+    it('should accept prepend mode config', () => {
+      const config: UserRpcConfig = {
+        endpoints: [
+          { chainId: '1', url: 'https://primary.example.com/rpc', label: 'Primary' },
+          { chainId: '1', url: 'https://backup.example.com/rpc', label: 'Backup' }
+        ],
+        mode: 'prepend'
+      };
+
+      expect(config.endpoints).toHaveLength(2);
+      expect(config.mode).toBe('prepend');
+    });
+
+    it('should accept multi-chain user endpoints', () => {
+      const config: UserRpcConfig = {
+        endpoints: [
+          { chainId: '1', url: 'https://eth.example.com/rpc' },
+          { chainId: '137', url: 'https://polygon.example.com/rpc' },
+          { chainId: '42161', url: 'https://arb.example.com/rpc' }
+        ],
+        mode: 'prepend'
+      };
+
+      expect(config.endpoints).toHaveLength(3);
+      const chainIds = config.endpoints.map(e => e.chainId);
+      expect(chainIds).toEqual(['1', '137', '42161']);
+    });
+
+    it('should be JSON serializable', () => {
+      const config: UserRpcConfig = {
+        endpoints: [
+          { chainId: '1', url: 'https://eth.example.com/rpc', label: 'My ETH' }
+        ],
+        mode: 'override'
+      };
+
+      const json = JSON.stringify(config);
+      const parsed = JSON.parse(json);
+
+      expect(parsed).toEqual(config);
+    });
+  });
+
+  describe('PrivacyConfig', () => {
+    it('should accept a complete privacy configuration', () => {
+      const config: PrivacyConfig = {
+        rotateWithinTier: true,
+        privacyMode: true,
+        queryJitterMs: 150
+      };
+
+      expect(config.rotateWithinTier).toBe(true);
+      expect(config.privacyMode).toBe(true);
+      expect(config.queryJitterMs).toBe(150);
+    });
+
+    it('should accept privacy-disabled configuration', () => {
+      const config: PrivacyConfig = {
+        rotateWithinTier: false,
+        privacyMode: false,
+        queryJitterMs: 0
+      };
+
+      expect(config.rotateWithinTier).toBe(false);
+      expect(config.privacyMode).toBe(false);
+      expect(config.queryJitterMs).toBe(0);
+    });
+
+    it('should be JSON serializable', () => {
+      const config: PrivacyConfig = {
+        rotateWithinTier: true,
+        privacyMode: false,
+        queryJitterMs: 100
+      };
+
+      const json = JSON.stringify(config);
+      const parsed = JSON.parse(json);
+
+      expect(parsed).toEqual(config);
+    });
+  });
+
+  describe('RpcProviderConfig (extended with privacy and userOverrides)', () => {
+    it('should accept config with privacy field', () => {
+      const config: RpcProviderConfig = {
+        chains: {
+          '1': {
+            chainId: 1,
+            chainName: 'Ethereum Mainnet',
+            endpoints: [],
+            totalOperationTimeoutMs: 30000,
+            cacheStaleAcceptanceMs: 60000
+          }
+        },
+        circuitBreaker: {
+          failureThreshold: 5,
+          openDurationMs: 30000,
+          halfOpenMaxAttempts: 2,
+          monitorWindowMs: 60000
+        },
+        retry: {
+          maxAttempts: 3,
+          baseDelayMs: 1000,
+          maxDelayMs: 10000
+        },
+        healthCheck: {
+          intervalMs: 30000,
+          timeoutMs: 5000,
+          method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: true,
+          privacyMode: true,
+          queryJitterMs: 150
+        }
+      };
+
+      expect(config.privacy).toBeDefined();
+      expect(config.privacy.rotateWithinTier).toBe(true);
+      expect(config.privacy.privacyMode).toBe(true);
+      expect(config.privacy.queryJitterMs).toBe(150);
+    });
+
+    it('should accept config with userOverrides field', () => {
+      const config: RpcProviderConfig = {
+        chains: {
+          '1': {
+            chainId: 1,
+            chainName: 'Ethereum Mainnet',
+            endpoints: [],
+            totalOperationTimeoutMs: 30000,
+            cacheStaleAcceptanceMs: 60000
+          }
+        },
+        circuitBreaker: {
+          failureThreshold: 5,
+          openDurationMs: 30000,
+          halfOpenMaxAttempts: 2,
+          monitorWindowMs: 60000
+        },
+        retry: {
+          maxAttempts: 3,
+          baseDelayMs: 1000,
+          maxDelayMs: 10000
+        },
+        healthCheck: {
+          intervalMs: 30000,
+          timeoutMs: 5000,
+          method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: false,
+          privacyMode: false,
+          queryJitterMs: 0
+        },
+        userOverrides: {
+          endpoints: [
+            { chainId: '1', url: 'https://my-eth.example.com/rpc', label: 'My Node' }
+          ],
+          mode: 'prepend'
+        }
+      };
+
+      expect(config.userOverrides).toBeDefined();
+      expect(config.userOverrides!.endpoints).toHaveLength(1);
+      expect(config.userOverrides!.mode).toBe('prepend');
+    });
+
+    it('should accept config without optional userOverrides', () => {
+      const config: RpcProviderConfig = {
+        chains: {},
+        circuitBreaker: {
+          failureThreshold: 5,
+          openDurationMs: 30000,
+          halfOpenMaxAttempts: 2,
+          monitorWindowMs: 60000
+        },
+        retry: {
+          maxAttempts: 3,
+          baseDelayMs: 1000,
+          maxDelayMs: 10000
+        },
+        healthCheck: {
+          intervalMs: 30000,
+          timeoutMs: 5000,
+          method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: false,
+          privacyMode: false,
+          queryJitterMs: 0
+        }
+      };
+
+      expect(config.userOverrides).toBeUndefined();
+    });
+
+    it('should serialize extended config to JSON', () => {
+      const config: RpcProviderConfig = {
+        chains: {},
+        circuitBreaker: {
+          failureThreshold: 5,
+          openDurationMs: 30000,
+          halfOpenMaxAttempts: 2,
+          monitorWindowMs: 60000
+        },
+        retry: {
+          maxAttempts: 3,
+          baseDelayMs: 1000,
+          maxDelayMs: 10000
+        },
+        healthCheck: {
+          intervalMs: 30000,
+          timeoutMs: 5000,
+          method: 'eth_blockNumber'
+        },
+        privacy: {
+          rotateWithinTier: true,
+          privacyMode: true,
+          queryJitterMs: 200
+        },
+        userOverrides: {
+          endpoints: [
+            { chainId: '1', url: 'https://my-node.example.com/rpc' }
+          ],
+          mode: 'override'
+        }
+      };
+
+      const json = JSON.stringify(config);
+      const parsed = JSON.parse(json);
+
+      expect(parsed.privacy.rotateWithinTier).toBe(true);
+      expect(parsed.privacy.queryJitterMs).toBe(200);
+      expect(parsed.userOverrides.mode).toBe('override');
+      expect(parsed.userOverrides.endpoints[0].chainId).toBe('1');
+    });
+  });
+
   describe('Contract Tests (Breaking Change Detection)', () => {
     it('should not remove RpcProviderRole values', () => {
       const coreRoles = ['PRIMARY', 'SECONDARY', 'TERTIARY', 'EMERGENCY'];
@@ -442,7 +757,7 @@ describe('RPC Provider Configuration Types', () => {
     });
 
     it('should not remove RpcProviderType values', () => {
-      const coreTypes = ['MANAGED', 'PUBLIC', 'COMMUNITY'];
+      const coreTypes = ['MANAGED', 'PUBLIC', 'COMMUNITY', 'DECENTRALIZED', 'USER'];
       const values = Object.values(RpcProviderType);
       coreTypes.forEach(type => {
         expect(values).toContain(type);
