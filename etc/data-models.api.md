@@ -511,6 +511,13 @@ export interface Price {
 }
 
 // @public
+export interface PrivacyConfig {
+    privacyMode: boolean;
+    queryJitterMs: number;
+    rotateWithinTier: boolean;
+}
+
+// @public
 export interface RetryConfig {
     baseDelayMs: number;
     maxAttempts: number;
@@ -534,7 +541,9 @@ export interface RpcProviderConfig {
     chains: Record<string, ChainRpcConfig>;
     circuitBreaker: CircuitBreakerConfig;
     healthCheck: HealthCheckConfig;
+    privacy: PrivacyConfig;
     retry: RetryConfig;
+    userOverrides?: UserRpcConfig;
 }
 
 // @public
@@ -548,8 +557,10 @@ export enum RpcProviderRole {
 // @public
 export enum RpcProviderType {
     COMMUNITY = "COMMUNITY",
+    DECENTRALIZED = "DECENTRALIZED",
     MANAGED = "MANAGED",
-    PUBLIC = "PUBLIC"
+    PUBLIC = "PUBLIC",
+    USER = "USER"
 }
 
 // @public
@@ -654,6 +665,20 @@ export enum TransactionType {
     TRANSFER_IN = "TRANSFER_IN",
     TRANSFER_OUT = "TRANSFER_OUT",
     UNSTAKE = "UNSTAKE"
+}
+
+// @public
+export interface UserRpcConfig {
+    endpoints: UserRpcEndpoint[];
+    mode: 'override' | 'prepend';
+}
+
+// @public
+export interface UserRpcEndpoint {
+    chainId: string;
+    label?: string;
+    url: string;
+    wsUrl?: string;
 }
 
 // @public

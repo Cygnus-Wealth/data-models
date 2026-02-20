@@ -28,5 +28,11 @@ export enum RpcProviderType {
   PUBLIC = 'PUBLIC',
 
   /** Community-run node (POKT, Llama Nodes) — variable reliability */
-  COMMUNITY = 'COMMUNITY'
+  COMMUNITY = 'COMMUNITY',
+
+  /** Decentralized RPC network (POKT Gateway, Lava Network) — censorship-resistant */
+  DECENTRALIZED = 'DECENTRALIZED',
+
+  /** User-provided custom endpoint — unverified, user-managed */
+  USER = 'USER'
 }
