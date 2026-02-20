@@ -1,6 +1,6 @@
 {
   "name": "@cygnus-wealth/data-models",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Shared TypeScript data models for CygnusWealth project",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
@@ -60,16 +60,6 @@
       "types": "./dist/enums/DeFiDiscoverySource.d.ts",
       "import": "./dist/enums/DeFiDiscoverySource.js",
       "require": "./dist/cjs/enums/DeFiDiscoverySource.js"
-    },
-    "./enums/RpcProviderRole": {
-      "types": "./dist/enums/RpcProviderRole.d.ts",
-      "import": "./dist/enums/RpcProviderRole.js",
-      "require": "./dist/cjs/enums/RpcProviderRole.js"
-    },
-    "./enums/RpcProviderType": {
-      "types": "./dist/enums/RpcProviderType.d.ts",
-      "import": "./dist/enums/RpcProviderType.js",
-      "require": "./dist/cjs/enums/RpcProviderType.js"
     },
     "./interfaces/*": {
       "types": "./dist/interfaces/*.d.ts",

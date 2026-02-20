@@ -227,23 +227,6 @@ export enum Chain {
 }
 
 // @public
-export interface ChainRpcConfig {
-    cacheStaleAcceptanceMs: number;
-    chainId: number;
-    chainName: string;
-    endpoints: RpcEndpointConfig[];
-    totalOperationTimeoutMs: number;
-}
-
-// @public
-export interface CircuitBreakerConfig {
-    failureThreshold: number;
-    halfOpenMaxAttempts: number;
-    monitorWindowMs: number;
-    openDurationMs: number;
-}
-
-// @public
 export interface ConnectedAccount {
     accountId: AccountId;
     accountLabel: string;
@@ -329,13 +312,6 @@ export interface GroupPortfolio {
     groupName: string;
     lastUpdated: string;
     totalValue: Price;
-}
-
-// @public
-export interface HealthCheckConfig {
-    intervalMs: number;
-    method: string;
-    timeoutMs: number;
 }
 
 // @public
@@ -511,59 +487,6 @@ export interface Price {
 }
 
 // @public
-export interface PrivacyConfig {
-    privacyMode: boolean;
-    queryJitterMs: number;
-    rotateWithinTier: boolean;
-}
-
-// @public
-export interface RetryConfig {
-    baseDelayMs: number;
-    maxAttempts: number;
-    maxDelayMs: number;
-}
-
-// @public
-export interface RpcEndpointConfig {
-    provider: string;
-    rateLimitRps: number;
-    role: RpcProviderRole;
-    timeoutMs: number;
-    type: RpcProviderType;
-    url: string;
-    weight?: number;
-    wsUrl?: string;
-}
-
-// @public
-export interface RpcProviderConfig {
-    chains: Record<string, ChainRpcConfig>;
-    circuitBreaker: CircuitBreakerConfig;
-    healthCheck: HealthCheckConfig;
-    privacy: PrivacyConfig;
-    retry: RetryConfig;
-    userOverrides?: UserRpcConfig;
-}
-
-// @public
-export enum RpcProviderRole {
-    EMERGENCY = "EMERGENCY",
-    PRIMARY = "PRIMARY",
-    SECONDARY = "SECONDARY",
-    TERTIARY = "TERTIARY"
-}
-
-// @public
-export enum RpcProviderType {
-    COMMUNITY = "COMMUNITY",
-    DECENTRALIZED = "DECENTRALIZED",
-    MANAGED = "MANAGED",
-    PUBLIC = "PUBLIC",
-    USER = "USER"
-}
-
-// @public
 export type SortOrder = 'ASC' | 'DESC';
 
 // @public
@@ -665,20 +588,6 @@ export enum TransactionType {
     TRANSFER_IN = "TRANSFER_IN",
     TRANSFER_OUT = "TRANSFER_OUT",
     UNSTAKE = "UNSTAKE"
-}
-
-// @public
-export interface UserRpcConfig {
-    endpoints: UserRpcEndpoint[];
-    mode: 'override' | 'prepend';
-}
-
-// @public
-export interface UserRpcEndpoint {
-    chainId: string;
-    label?: string;
-    url: string;
-    wsUrl?: string;
 }
 
 // @public
