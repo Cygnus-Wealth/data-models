@@ -9,9 +9,6 @@ export { VaultStrategyType } from './enums/VaultStrategyType';
 export { DeFiPositionType } from './enums/DeFiPositionType';
 export { DeFiProtocol } from './enums/DeFiProtocol';
 export { DeFiDiscoverySource } from './enums/DeFiDiscoverySource';
-export { RpcProviderRole } from './enums/RpcProviderRole';
-export { RpcProviderType } from './enums/RpcProviderType';
-
 // Base Interfaces
 export { BaseEntity } from './interfaces/BaseEntity';
 export { Metadata } from './interfaces/Metadata';
@@ -79,17 +76,6 @@ export { AssetIdentifier } from './types/AssetIdentifier';
 export { TimeRange } from './types/TimeRange';
 export { SortOrder } from './types/SortOrder';
 export { FilterOptions } from './interfaces/FilterOptions';
-
-// RPC Provider Configuration
-export { RpcEndpointConfig } from './interfaces/RpcEndpointConfig';
-export { ChainRpcConfig } from './interfaces/ChainRpcConfig';
-export { CircuitBreakerConfig } from './interfaces/CircuitBreakerConfig';
-export { RetryConfig } from './interfaces/RetryConfig';
-export { HealthCheckConfig } from './interfaces/HealthCheckConfig';
-export { RpcProviderConfig } from './interfaces/RpcProviderConfig';
-export type { UserRpcEndpoint } from './interfaces/UserRpcEndpoint';
-export type { UserRpcConfig } from './interfaces/UserRpcConfig';
-export type { PrivacyConfig } from './interfaces/PrivacyConfig';
 
 // Network Environment
 export { NetworkEnvironment, EnvironmentConfig } from './types/NetworkEnvironment';
