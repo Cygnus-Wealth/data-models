@@ -122,6 +122,7 @@ export enum AccountType {
 export interface AddressRequest {
     accountId: AccountId;
     address: string;
+    chainFamily: ChainFamily;
     chainScope: Chain[];
 }
 
@@ -212,6 +213,9 @@ export interface BaseEntity {
 }
 
 // @public
+export type Caip2ChainId = string;
+
+// @public
 export enum Chain {
     ARBITRUM = "ARBITRUM",
     AVALANCHE = "AVALANCHE",
@@ -227,10 +231,21 @@ export enum Chain {
 }
 
 // @public
+export enum ChainFamily {
+    APTOS = "aptos",
+    BITCOIN = "bitcoin",
+    COSMOS = "cosmos",
+    EVM = "evm",
+    SOLANA = "solana",
+    SUI = "sui"
+}
+
+// @public
 export interface ConnectedAccount {
     accountId: AccountId;
     accountLabel: string;
     address: string;
+    chainFamily: ChainFamily;
     chainScope: Chain[];
     discoveredAt: string;
     isActive: boolean;
@@ -328,10 +343,13 @@ export interface IntegrationCredentials {
 
 // @public
 export enum IntegrationSource {
+    APTOS = "APTOS",
     BALANCER = "BALANCER",
     BINANCE = "BINANCE",
+    BITCOIN = "BITCOIN",
     BLOCKCHAIN_DIRECT = "BLOCKCHAIN_DIRECT",
     COINBASE = "COINBASE",
+    COSMOS = "COSMOS",
     CURVE = "CURVE",
     KRAKEN = "KRAKEN",
     MANUAL_ENTRY = "MANUAL_ENTRY",
@@ -342,6 +360,7 @@ export enum IntegrationSource {
     RABBY = "RABBY",
     ROBINHOOD = "ROBINHOOD",
     SLUSH = "SLUSH",
+    SUI = "SUI",
     SUIET = "SUIET",
     SUSHISWAP = "SUSHISWAP",
     UNISWAP = "UNISWAP"
@@ -528,6 +547,7 @@ export interface TrackedAddress {
     accountId: AccountId;
     accountLabel: string;
     address: string;
+    chainFamily: ChainFamily;
     chainScope: Chain[];
     connectionLabel: string;
     providerId: WalletProviderId | 'watch';
@@ -629,6 +649,7 @@ export interface WalletConnection {
     providerId: WalletProviderId;
     providerName: string;
     sessionStatus: 'active' | 'stale' | 'disconnected';
+    supportedChainFamilies: ChainFamily[];
     supportedChains: Chain[];
 }
 
@@ -653,6 +674,7 @@ export interface WatchAddress {
     addedAt: string;
     address: string;
     addressLabel: string;
+    chainFamily: ChainFamily;
     chainScope: Chain[];
 }
 
