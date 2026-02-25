@@ -1,5 +1,6 @@
 import { AccountId } from '../types/AccountId';
 import { Chain } from '../enums/Chain';
+import { ChainFamily } from '../enums/ChainFamily';
 
 /**
  * Request to query data for a specific account address.
@@ -30,6 +31,9 @@ export interface AddressRequest {
 
   /** Checksummed address to query */
   address: string;
+
+  /** Chain family for routing to the correct integration */
+  chainFamily: ChainFamily;
 
   /** Chains to query for this address */
   chainScope: Chain[];

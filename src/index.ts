@@ -1,6 +1,7 @@
 // Enums
 export { AssetType } from './enums/AssetType';
 export { Chain } from './enums/Chain';
+export { ChainFamily } from './enums/ChainFamily';
 export { IntegrationSource } from './enums/IntegrationSource';
 export { TransactionType } from './enums/TransactionType';
 export { AccountType } from './enums/AccountType';
@@ -38,6 +39,7 @@ export { PortfolioAsset } from './interfaces/PortfolioAsset';
 export type { WalletProviderId } from './types/WalletProviderId';
 export type { WalletConnectionId } from './types/WalletConnectionId';
 export type { AccountId } from './types/AccountId';
+export type { Caip2ChainId } from './types/Caip2ChainId';
 
 // Multi-Wallet Connection Models
 export type { WalletConnection } from './interfaces/WalletConnection';

@@ -1,6 +1,7 @@
 import { WalletConnectionId } from '../types/WalletConnectionId';
 import { WalletProviderId } from '../types/WalletProviderId';
 import { Chain } from '../enums/Chain';
+import { ChainFamily } from '../enums/ChainFamily';
 import { ConnectedAccount } from './ConnectedAccount';
 
 /**
@@ -63,6 +64,9 @@ export interface WalletConnection {
 
   /** Chains this wallet connection supports */
   supportedChains: Chain[];
+
+  /** Chain families this wallet connection supports (e.g., EVM, Solana, SUI) */
+  supportedChainFamilies: ChainFamily[];
 
   /** ISO 8601 timestamp of initial connection */
   connectedAt: string;

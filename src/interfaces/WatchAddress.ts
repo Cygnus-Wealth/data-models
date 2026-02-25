@@ -1,5 +1,6 @@
 import { AccountId } from '../types/AccountId';
 import { Chain } from '../enums/Chain';
+import { ChainFamily } from '../enums/ChainFamily';
 
 /**
  * An address tracked independently of any wallet connection.
@@ -35,6 +36,9 @@ export interface WatchAddress {
 
   /** User-assigned label */
   addressLabel: string;
+
+  /** Chain family of this watched address */
+  chainFamily: ChainFamily;
 
   /** Chains to track this address on */
   chainScope: Chain[];

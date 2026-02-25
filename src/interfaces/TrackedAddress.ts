@@ -2,6 +2,7 @@ import { AccountId } from '../types/AccountId';
 import { WalletConnectionId } from '../types/WalletConnectionId';
 import { WalletProviderId } from '../types/WalletProviderId';
 import { Chain } from '../enums/Chain';
+import { ChainFamily } from '../enums/ChainFamily';
 
 /**
  * An address being tracked for portfolio purposes with full account context.
@@ -48,6 +49,9 @@ export interface TrackedAddress {
 
   /** Label of the parent wallet connection */
   connectionLabel: string;
+
+  /** Chain family of this tracked address, used for integration routing */
+  chainFamily: ChainFamily;
 
   /** Chains to query for this address */
   chainScope: Chain[];

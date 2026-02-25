@@ -76,6 +76,18 @@ export enum IntegrationSource {
   /** Data fetched directly from blockchain via RPC */
   BLOCKCHAIN_DIRECT = 'BLOCKCHAIN_DIRECT',
 
+  /** SUI blockchain integration */
+  SUI = 'SUI',
+
+  /** Bitcoin blockchain integration */
+  BITCOIN = 'BITCOIN',
+
+  /** Cosmos ecosystem integration */
+  COSMOS = 'COSMOS',
+
+  /** Aptos blockchain integration */
+  APTOS = 'APTOS',
+
   /** Other or unclassified data source */
   OTHER = 'OTHER'
 }

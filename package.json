@@ -21,6 +21,11 @@
       "import": "./dist/enums/Chain.js",
       "require": "./dist/cjs/enums/Chain.js"
     },
+    "./enums/ChainFamily": {
+      "types": "./dist/enums/ChainFamily.d.ts",
+      "import": "./dist/enums/ChainFamily.js",
+      "require": "./dist/cjs/enums/ChainFamily.js"
+    },
     "./enums/IntegrationSource": {
       "types": "./dist/enums/IntegrationSource.d.ts",
       "import": "./dist/enums/IntegrationSource.js",

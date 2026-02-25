@@ -1,5 +1,6 @@
 import { AccountId } from '../types/AccountId';
 import { Chain } from '../enums/Chain';
+import { ChainFamily } from '../enums/ChainFamily';
 
 /**
  * A single account within a wallet connection.
@@ -39,6 +40,9 @@ export interface ConnectedAccount {
 
   /** User-assigned label (default: truncated address) */
   accountLabel: string;
+
+  /** Chain family this account belongs to */
+  chainFamily: ChainFamily;
 
   /** Chains to track this account on (default: all supported by the connection) */
   chainScope: Chain[];
